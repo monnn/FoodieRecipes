@@ -1,0 +1,4 @@
+en:
+  errors:
+    rate_only_once: You are allowed to rate a recipe only once.
+    no_follow_yourself: You are not allowed to follow yourself.

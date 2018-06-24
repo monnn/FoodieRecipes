@@ -1,0 +1,55 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'Gemfile'
+################################# Naming #######################################
+
+Naming/AccessorMethodName:
+  Enabled: true
+
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+################################# Style #######################################
+
+Style/Documentation:
+  Enabled: false
+
+Style/DateTime:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '()'
+    '%w': '()'
+    '%W': '()'
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+################################## Metrics #####################################
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 500
+
+Metrics/CyclomaticComplexity:
+  Max: 28
+
+Metrics/LineLength:
+  Max: 140
+
+Metrics/MethodLength:
+  Max: 40
+
+Metrics/ModuleLength:
+  Max: 500
+
+Metrics/PerceivedComplexity:
+  Max: 10

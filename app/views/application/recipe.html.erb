@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @recipe.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>Ingredients:</strong>
+  <%= @recipe.ingredients %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @recipe.image %>
+</p>
+
+<span>
+  <%= button_to 'Rate 3', rate_recipe_path(rating: 3), method: :post%>
+</span>
+
+<span>
+  <%= button_to 'Rate 4', rate_recipe_path(rating: 4), method: :post%>
+</span>
+
+<span>
+  <%= button_to 'Rate 5', rate_recipe_path(rating: 5), method: :post, data: { confirm: 'Are you sure?' } %>
+</span>
+
+<span>
+  <%= button_to 'I am cooking it!', new_cooking_record_path(date: Date.today), method: :post %>
+</span>
+
+<%= link_to 'Back', recipes_path %>

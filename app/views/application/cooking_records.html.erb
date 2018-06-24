@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cooking Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Recipe</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cooking_records.each do |cooking_record| %>
+      <tr>
+        <td><%= cooking_record.user_id %></td>
+        <td><%= cooking_record.recipe_id %></td>
+        <td><%= cooking_record.date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
