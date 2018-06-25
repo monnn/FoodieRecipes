@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_users, only: [:index]
-  before_action :set_user, only: [:show, :update, :recommendations, :ratings, :social_recommendations,
-                                  :user_based_recommendations, :follow_user]
+  before_action :set_user
 
   def index
     render 'users'
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def recommendations
+  def content_based_recommendations
     if params[:ingredients]
       recipe_ingedients = RecipeIngedient.where(ingredient_id: params[:ingredients]).to_a
       recipes_collection = recipe_ingedients.map(&:recipe)
@@ -52,6 +51,13 @@ class UsersController < ApplicationController
 
   def user_based_recommendations
     @recipes = Recommendation.user_based_recommendation(@user, 10)
+    render 'recipes'
+  end
+
+  def mixed_recommendations
+    content_based = Recommendation.content_based_recommendation(@user, 7)
+    user_based = Recommendation.user_based_recommendation(@user, 3)
+    @recipes = content_based + user_based
     render 'recipes'
   end
 

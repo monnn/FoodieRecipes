@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   post '/users/:id' => 'users#update', as: :update_user
   post '/users/:id/follow' => 'users#follow_user', as: :follow_user
 
-  get '/users/:id/recommendations' => 'users#recommendations'
+  get '/users/:id/recommendations' => 'users#content_based_recommendations'
   get '/users/:id/social_recommendations' => 'users#social_recommendations'
   get '/users/:id/user_based_recommendations' => 'users#user_based_recommendations'
+  get '/users/:id/mixed_recommendations' => 'users#mixed_recommendations'
 
   get '/wish_records' => 'recipes#wishlist', as: :wish_records 
   delete '/wish_records/:id' => 'recipes#remove_from_wishlist' 

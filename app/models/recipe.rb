@@ -31,7 +31,7 @@ class Recipe < ApplicationRecord
     RecipeIngredient.where(recipe_id: id)
   end
 
-  def similar_recipes
+  def similar_recipes(n)
     other_recipes = Recipe.where.not(id: id)
     recipes_with_similarity = []
 
@@ -40,7 +40,7 @@ class Recipe < ApplicationRecord
       recipes_with_similarity.push(recipe[:name] => similarity)
     end
 
-    recipes_with_similarity.sort_by! { |recipe| -recipe.values.first }[0, 10]
+    recipes_with_similarity.sort_by! { |recipe| -recipe.values.first }[0, n]
   end
 
   def contains_ingredient(ingredient_id)

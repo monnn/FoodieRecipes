@@ -1,6 +1,9 @@
 module Recommendation
   extend Calculations
 
+  FOLLOWEE_TRUST_WEIGHT = 5
+  NEIGHBOUR_RATING_WEIGHT = 5
+
   # Content base filtering, based on recipes ingredients
   # Uses user_vector and returns recipes with most similar ingredients vector
   def self.content_based_recommendation(user, n, recipes_collection = Recipe.all)
@@ -23,7 +26,7 @@ module Recommendation
     user.most_trusted_followings.each do |following|
       followee = following.followee
       followee.added_recipes.each do |recipe|
-        recipe_weight = recipe.rating + (following.trust * 5)
+        recipe_weight = recipe.rating + (following.trust * FOLLOWEE_TRUST_WEIGHT)
         recipes_with_weight.push(recipe[:id] => recipe_weight)
       end
     end
@@ -56,7 +59,8 @@ module Recommendation
       user_rating = Rating.find_by(user_id: neighbour.keys.first, recipe_id: recipe[:id])
       next if user_rating.nil?
 
-      recipe_rating = ((user_rating[:rating] * 5) + neighbour.values.first) / 5
+      recipe_rating =
+        ((user_rating[:rating] * NEIGHBOUR_RATING_WEIGHT) + neighbour.values.first) / NEIGHBOUR_RATING_WEIGHT
       all_recipe_ratings.push(recipe_rating)
     end
 
